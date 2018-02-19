@@ -2,7 +2,7 @@
 <html >
     <head>
         <meta charset="UTF-8">
-        <title>Request - Lambda 101</title>
+        <title>Request - Lambda101</title>
 			<link rel="stylesheet" href="./css/normalize.min.css">
 			<link rel="stylesheet" href="./css/bootstrap.min.css">
 			<link rel="stylesheet" href="./css/style.css">
@@ -12,7 +12,7 @@
 	</head>
 	<body>
 		<div class="request-login" >
-			<img src="./img/lambda_request.png" style="border-width:0px;max-width:30vw;max-height: 35vw;margin-left: 19px;">
+			<img src="./img/lambda_register.png" style="border-width:0px;max-width:30vw;max-height: 35vw;margin-left: 19px;">
 			<form method="GET">
                 <div class="row tag-margin">
                     <div class="col-sm-4 label-style" style="padding-top: 10px;"><span style="color:red;">*</span>Full Name : </div>
@@ -47,14 +47,12 @@
 				<div class="row">
 					<div class="col-sm-4"></div>
 					<div class="col-sm-4" style="margin:auto;">
-						<button type="button" class="btn btn-primary btn-block btn-large" onclick="requestLogin({email : email.value,password : pwd.value, location : location.value, name : fname.value, comments : comments.value})" id="reg-submit">Request</button>
+						<button type="button" class="btn btn-primary btn-block btn-large" onclick="loginRegistration({email : email.value,password : pwd.value, location : location.value, name : fname.value, comments : comments.value})" id="reg-submit">Request</button>
 					</div>
 					<div class="col-sm-4"></div>
 				</div>
 			</form>
 		</div>
-		<!-- <script src="js/Sha256Logic.js"></script>
-        <script src="js/Login.js"></script>
-        <script src="js/ValidateUrl.js"></script> -->
+		<script src="js/lambda101.js"></script>
 	</body>
 </html>
