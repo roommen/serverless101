@@ -11,7 +11,7 @@ def login(email, password):
         sql = "SELECT User_ID FROM Users WHERE Email_Address='%s'" % (email)
         cursor = connection.cursor()
         cursor.execute(sql)
-        (user_id, ) = cursor.fetchone()
+        user_id = cursor.fetchall()
         if user_id:
             return {"result": "true"}
         else:

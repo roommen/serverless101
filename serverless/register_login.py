@@ -9,9 +9,9 @@ def register_login(name, email, password, location, comments):
         sql = "SELECT User_ID FROM Users WHERE Email_Address='%s'" % (email)
         cursor = connection.cursor()
         cursor.execute(sql)
-        (user_id, ) = cursor.fetchone()
+        user_id = cursor.fetchall()
         if user_id:
-            return {'result' : 'user exists'}
+            return {"result" : "user exists"}
         else:
             query = "INSERT INTO Users(FullName,Email_Address,Password,Location,Comments) VALUES ('" + name + "','" + email + "','" + password + "','" + location + "','" + comments + "')"
             cursor = connection.cursor()
@@ -20,7 +20,7 @@ def register_login(name, email, password, location, comments):
 
             return {"result": "true"}
     except mysql.connector.Error as err:
-        return {'result' : err}
+        return {"result" : err}
     finally:
         if connection:
             connection.close()

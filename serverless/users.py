@@ -12,14 +12,12 @@ def users(user_id):
         sql = "SELECT FullName,Email_Address,Location,Comments FROM Users WHERE User_ID='%s'" % (user_id)
         cursor = connection.cursor()
         cursor.execute(sql)
-        # Work on this
-        # columns = [column[0] for column in cursor.description]
-        # for row in cursor.fetchall():
-        #     users.append(dict(zip(columns, row)))
-        # if len(users) > 0:
-        #     return {"result": users}
-        # else:
-        #     return {"result": None}
+        (user_details, ) = cursor.fetchall()
+        if user_details:
+            return {"result": "true", "values": {"name": user_details[0], "email": user_details[1],
+                                                 "location": user_details[2], "comments": user_details[3]}}
+        else:
+            return {"result": "false"}
     except mysql.connector.Error as err:
         return {"result": err}
     finally:
