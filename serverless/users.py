@@ -1,15 +1,13 @@
 import mysql.connector
-from common.CommonDefs import lambda101_cnx_str
-
 
 def users(user_id):
     connection, cursor = None, None
     try:
         #Database Connection Parameters
-        lambda101_cnx_str = {'host': 'dbnode.cemnrzna330w.ap-south-1.rds.amazonaws.com',
-           'username': 'user',
-           'password': 'password',
-           'db': 'dbname'}
+        lambda101_cnx_str = {'host': 'f1.cemnrzna330w.ap-south-1.rds.amazonaws.com',
+           'username': 'runcy',
+           'password': 'enternow123',
+           'db': 'f1'}
         users = []
         connection = mysql.connector.connect(host=lambda101_cnx_str['host'], user=lambda101_cnx_str['username'],
                                              password=lambda101_cnx_str['password'], database=lambda101_cnx_str['db'])

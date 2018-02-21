@@ -1,30 +1,25 @@
 /* Show User Info */
 function showUserInfo(){
-    var user_id = localStorage.getItem("snauth_user_id");
-    var info_url = 'https://arnid.execute-api.ap-south-1.amazonaws.com/lambda101/UserInfo?uid=' + user_id;
-
-    // var obj = new Object();
-    // obj.username = username;
-    // var jsonObj = JSON.stringify(obj);
+    var user_id = localStorage.getItem("user_id");
+    var info_url = ' https://9keineegb6.execute-api.ap-south-1.amazonaws.com/lambda101/users';
 
     $.ajax({
         url: info_url,
         type: 'GET',
-        data: jsonObj,
+        data : {"user_id" : user_id},
+        // data : {"user_id" : "2"},
         dataType: 'html',
         async: false,
         success: function(data)
         {
             var result = $.parseJSON(data);
-            users = result['result'];
+            user_info = result['values'];
             html_code = "";
 
-            for(i=0;i<users.length;i++){
-                html_code += '<tr><td>'+ (i+1) + '</td><td>' + users[i]['FullName'] +
-                        '</td><td>' + users[i]['Email_Address'] + '</td><td>' + users[i]['Comments'] +
-                        '</td><td><span style="color:#4ef71b;text-align:center;" class="fa fa-circle"></span>' +
-                        '</td><td><div class="tooltip"><span class="tooltiptext">Block</span><a href="" class="block-user" style="color:red;"><span class="fa fa-ban"></span></a></div></td></tr>';
-            }
+            html_code += '<td>' + user_info['name'] +
+                    '</td><td>' + user_info['email'] + '</td><td>' + user_info['location'] + '</td><td>' + user_info['comments']
+                    '</td><td><span style="color:#4ef71b;text-align:center;" class="fa fa-circle"></span>' +
+                    '</td><td><div class="tooltip"><span class="tooltiptext">Block</span><a href="" class="block-user" style="color:red;"><span class="fa fa-ban"></span></a></div></td></tr>';
 
             $('#users-list tbody').html(html_code);
         }
@@ -39,7 +34,7 @@ function login(auth_details)
     {
         $("#error").css('visibility', 'hidden');
         passwordValue = SHA256(auth_details.password)
-        login_url = 'https://arnid.execute-api.ap-south-1.amazonaws.com/lambda101/Login';
+        login_url = 'https://9keineegb6.execute-api.ap-south-1.amazonaws.com/lambda101/login';
         var obj = new Object();
         obj.email = auth_details.email;
         obj.password = passwordValue;
@@ -56,11 +51,13 @@ function login(auth_details)
                 login_success = result['result'];
                 //store userid in browser local storage
                 if (typeof(Storage) !== "undefined") {
-                    localStorage.setItem("snauth_user_id", userid);
+                    localStorage.setItem("user_id", result['uid']);
                 }
-                
+
                 if(login_success === "true"){
-                    window.location = './users.html';
+                    uid = result['uid']
+                    // window.location = './users.html?user_id=' + result['result']['values']['uid'];
+                    window.location = './users.html?user_id=' + uid;
                 }else{
                     $("#error").text("*Invalid credentials");
                     $("#error").css('visibility', 'visible');
@@ -75,7 +72,7 @@ function loginRegistration(login_registration){
 	if((login_registration.email) && (login_registration.password) && (login_registration.name) && (login_registration.comments) && (login_registration.location))
     {
         passwordValue = SHA256(login_registration.password)
-        login_reg_url = 'https://arnid.execute-api.ap-south-1.amazonaws.com/lambda101/LoginRegister';
+        login_reg_url = 'https://9keineegb6.execute-api.ap-south-1.amazonaws.com/lambda101/register-login';
         var obj = new Object();
         obj.name = login_registration.name;
         obj.email = login_registration.email;
