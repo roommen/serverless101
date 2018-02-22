@@ -3,11 +3,11 @@ import mysql.connector
 def users(user_id):
     connection, cursor = None, None
     try:
-        #Database Connection Parameters
-        lambda101_cnx_str = {'host': 'f1.cemnrzna330w.ap-south-1.rds.amazonaws.com',
-           'username': 'runcy',
-           'password': 'enternow123',
-           'db': 'f1'}
+        #Database Connection Parameters - Replace this with your DB endpoint
+        lambda101_cnx_str = {'host': 'dbnode.cemnrzna330w.ap-south-1.rds.amazonaws.com',
+           'username': 'user',
+           'password': 'password',
+           'db': 'dbname'}
         users = []
         connection = mysql.connector.connect(host=lambda101_cnx_str['host'], user=lambda101_cnx_str['username'],
                                              password=lambda101_cnx_str['password'], database=lambda101_cnx_str['db'])
