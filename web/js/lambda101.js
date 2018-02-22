@@ -1,5 +1,6 @@
 /* Show User Info */
 function showUserInfo(){
+    //get userid from browser local storage
     var user_id = localStorage.getItem("user_id");
     var info_url = ' https://9keineegb6.execute-api.ap-south-1.amazonaws.com/lambda101/users';
 
@@ -7,7 +8,6 @@ function showUserInfo(){
         url: info_url,
         type: 'GET',
         data : {"user_id" : user_id},
-        // data : {"user_id" : "2"},
         dataType: 'html',
         async: false,
         success: function(data)
@@ -56,8 +56,7 @@ function login(auth_details)
 
                 if(login_success === "true"){
                     uid = result['uid']
-                    // window.location = './users.html?user_id=' + result['result']['values']['uid'];
-                    window.location = './users.html?user_id=' + uid;
+                    window.location = './users.html';
                 }else{
                     $("#error").text("*Invalid credentials");
                     $("#error").css('visibility', 'visible');
