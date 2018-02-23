@@ -3,7 +3,7 @@ import mysql.connector
 def drop_users():
     connection, cursor = None, None
     try:
-        #Database Connection Parameters
+        #Database Connection Parameters - Replace this with your DB endpoint
         lambda101_cnx_str = {'host': 'dbnode.cemnrzna330w.ap-south-1.rds.amazonaws.com',
            'username': 'user',
            'password': 'password',
@@ -20,7 +20,6 @@ def drop_users():
             connection.close()
         if cursor:
             cursor.close()
-
 
 if __name__ == '__main__':
     drop_users()

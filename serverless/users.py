@@ -29,7 +29,6 @@ def users(user_id):
         if cursor:
             cursor.close()
 
-
 def lambda_handler(event, context):
     user_id = event['user_id']
     return users(user_id)
