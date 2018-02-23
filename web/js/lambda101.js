@@ -2,7 +2,8 @@
 function showUserInfo(){
     //get userid from browser local storage
     var user_id = localStorage.getItem("user_id");
-    var info_url = ' https://9keineegb6.execute-api.ap-south-1.amazonaws.com/lambda101/users';
+    //API Endpoint - Replace this with endpoint you created
+    var info_url = ' https://123abcdef789.execute-api.ap-south-1.amazonaws.com/lambda101/users';
 
     $.ajax({
         url: info_url,
@@ -34,7 +35,8 @@ function login(auth_details)
     {
         $("#error").css('visibility', 'hidden');
         passwordValue = SHA256(auth_details.password)
-        login_url = 'https://9keineegb6.execute-api.ap-south-1.amazonaws.com/lambda101/login';
+        //API Endpoint - Replace this with endpoint you created
+        login_url = 'https://123abcdef789.execute-api.ap-south-1.amazonaws.com/lambda101/login';
         var obj = new Object();
         obj.email = auth_details.email;
         obj.password = passwordValue;
@@ -71,7 +73,8 @@ function loginRegistration(login_registration){
 	if((login_registration.email) && (login_registration.password) && (login_registration.name) && (login_registration.comments) && (login_registration.location))
     {
         passwordValue = SHA256(login_registration.password)
-        login_reg_url = 'https://9keineegb6.execute-api.ap-south-1.amazonaws.com/lambda101/register-login';
+        //API Endpoint - Replace this with endpoint you created
+        login_reg_url = 'https://123abcdef789.execute-api.ap-south-1.amazonaws.com/lambda101/register-login';
         var obj = new Object();
         obj.name = login_registration.name;
         obj.email = login_registration.email;
