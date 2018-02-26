@@ -1,11 +1,9 @@
 import mysql.connector
-from common.CommonDefs import lambda101_cnx_str
-
 
 def users(user_id):
     connection, cursor = None, None
     try:
-        #Database Connection Parameters
+        #Database Connection Parameters - Replace this with your DB endpoint
         lambda101_cnx_str = {'host': 'dbnode.cemnrzna330w.ap-south-1.rds.amazonaws.com',
            'username': 'user',
            'password': 'password',
@@ -30,7 +28,6 @@ def users(user_id):
             connection.close()
         if cursor:
             cursor.close()
-
 
 def lambda_handler(event, context):
     user_id = event['user_id']
