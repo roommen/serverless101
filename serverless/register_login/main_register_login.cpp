@@ -75,4 +75,4 @@ void init(Handle <Object> exports, Handle<Object> module) {
 	NODE_SET_METHOD(exports, "registerLogin", registerLoginASync);
 }
 
-NODE_MODULE(custDec, init)
+NODE_MODULE(regLog, init)

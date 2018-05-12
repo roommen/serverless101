@@ -6,9 +6,7 @@
 		'sources': [ 'register_login.cpp', 'main_register_login.cpp' ],
 		'include_dirs': [ './cppcon' ],
 		'libraries': [ '-L. -static -lmysqlcppconn' ],
-		'cflags': ['-fexceptions', '-fPIC'],
-		# 'cflags': ['-fexceptions']
-		# 'cflags': ['-Wall', '-std=c++1y', '-fexceptions']
+		'cflags': [ '-Wall', '-std=c++1y', '-fexceptions', '-fPIC'],
 	}
 	]
 }
