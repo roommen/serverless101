@@ -1,0 +1,14 @@
+Follow the set of commands below for reference:
+
+Getting the source:
+1. git clone https://github.com/mysql/mysql-connector-cpp.git
+2. cd mysql-connector-cpp
+3. git checkout 8.0
+4. git submodule update --init (for JDBC with 8.0)
+
+cmake commands:
+1. cmake -DWITH_BOOST=/usr/local/ -DBUILD_STATIC=ON -DBUNDLE_DEPENDENCIES=ON -DCMAKE_BUILD_TYPE=Release -DMYSQL_DIR=/usr/include/mysql -DWITH_JDBC=ON -DWITH_SSL=system mysql-connector-cpp/
+2. sudo cmake --build . --target install --config Release
+
+g++ commands:
+g++ -Wall -DSTATIC_CONCPP -I/usr/local/mysql/connector-c++-8.0/include/jdbc/ last.cpp /usr/local/mysql/connector-c++-8.0/lib64/libmysqlcppconn-static.a -L/usr/local/mysql/connector-c++-8.0/ -lssl -lcrypto -lpthread -ldl -o last
