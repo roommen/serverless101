@@ -1,0 +1,7 @@
+[
+    {
+        "sql": "CREATE TABLE Users (User_ID DOUBLE NOT NULL AUTO_INCREMENT PRIMARY KEY, FullName VARCHAR(35) NOT NULL, Email_Address VARCHAR(35) NOT NULL, Password VARCHAR(70) NOT NULL, Location VARCHAR(25) NOT NULL, Comments VARCHAR(155) NOT NULL));",
+        "table": "Users",
+        "execute": "y"
+    }
+]
