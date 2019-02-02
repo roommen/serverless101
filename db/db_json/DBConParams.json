@@ -1,6 +1,0 @@
-{
-    "host": "serverless101.xyz123zbc987.ap-south-1.rds.amazonaws.com",
-    "username": "root",
-    "password": "P@$$w0rd",
-    "db": "serverless101"
-}
