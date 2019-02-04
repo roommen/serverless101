@@ -59,7 +59,7 @@ input.form-control {
   box-shadow: inset 0px 0px 0px 1px #30a5ff; }
 
 .navbar-custom {
-  background: #222;
+  background: rgb(255, 255, 255);
   height: 60px; }
 
 .navbar-header .navbar-brand {
@@ -67,7 +67,7 @@ input.form-control {
   font-size: 20px;
   text-transform: uppercase;
   font-weight: 500;
-  height: 60px;
+  height: 0px;
   padding-top: 18px; }
 
 .navbar-header .navbar-brand span {
