@@ -1,7 +1,7 @@
 /* Show Active Users */
 function showActiveUsers(){
     //get userid from browser local storage
-    var user_id = localStorage.getItem("user_id");
+    // var user_id = localStorage.getItem("user_id");
     //API Endpoint - Replace this with endpoint you created
     var info_url = ' https://123abcdef789.execute-api.ap-south-1.amazonaws.com/lambda101/users';
 
@@ -27,14 +27,19 @@ function showActiveUsers(){
     });
 }
 
+/* Show Blocked Users */
+function showBlockedUsers() {
+
+}
+
 /* Login */
-function login(auth_details)
+function login(authdetails)
 {
 	var result = null;
-    if((auth_details.email) && (auth_details.password))
+    if((authdetails.email) && (authdetails.password))
     {
         $("#error").css('visibility', 'hidden');
-        passwordValue = SHA256(auth_details.password)
+        passwordValue = SHA256(authdetails.password)
         //API Endpoint - Replace this with endpoint you created
         login_url = 'https://123abcdef789.execute-api.ap-south-1.amazonaws.com/lambda101/login';
         var obj = new Object();

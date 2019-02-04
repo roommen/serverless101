@@ -1,34 +1,34 @@
 import mysql.connector
 
-def login(email, password):
+def activeusers():
     connection, cursor = None, None
     try:
-        # Database connection parameters - replace this with your DB endpoint
+        #Database connection parameters - replace this with your DB endpoint
         serverless101cnxstr = {'host': 'dbnode.cemnrzna330w.ap-south-1.rds.amazonaws.com',
            'user': 'user',
            'password': 'password',
            'database': 'dbname'}
         connection = mysql.connector.connect(host=serverless101cnxstr['host'], user=serverless101cnxstr['user'],
                                              password=serverless101cnxstr['password'], database=serverless101cnxstr['database'])
-        # Check if user/password is a match
-        sql = "SELECT UserID FROM Users WHERE EmailAddress='%s' and Password='%s'" % (email, password)
+        # Get all active users
+        users = []
+        sql = "SELECT * FROM Users WHERE Enabled=1"
         cursor = connection.cursor()
         cursor.execute(sql)
-        (userid, ) = cursor.fetchall()
-        if userid:
-            return {"result": True, "uid": userid[0]}
+        columns = [column[0] for column in cursor.description]
+        for row in cursor.fetchall():
+            users.append(dict(zip(columns, row)))
+        if len(users) > 0:
+            return {"users": users}
         else:
-            return {"result": False}
+            return {"users": None}
     except mysql.connector.Error as err:
-        return {"result": err}
+        return {"users": err}
     finally:
         if connection:
             connection.close()
         if cursor:
             cursor.close()
 
-
 def lambda_handler(event, context):
-    email = event['email']
-    password = event['password']
-    return login(email, password)
+    return activeusers()

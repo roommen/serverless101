@@ -27,7 +27,7 @@
 							<li class="dropdown">
 								<a style="width:auto;padding-top:5px;" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 									<i class="fa fa-user-circle" style="font-size:26px;"></i>
-									<span id="uname">AWSUGBLR</span><span class="caret"></span>
+									<span id="uname">User</span><span class="caret"></span>
 								</a>
 								<ul class="dropdown-menu">
 									<li>
@@ -44,16 +44,15 @@
 		<div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
 			<div class="divider"></div>
 			<ul class="nav menu">
-				<li><a href="./activeContacts.html">Active Contacts</a></li>
-				<li class="active"><a href="./invalidContacts.html">Invalid Contacts</a></li>
-				<li><a href="./addContact.html">Add New Contact</a></li>
+				<li><a href="./activeusers.html">Active Users</a></li>
+				<li class="active"><a href="./blockedusers.html">Blocked Users</a></li>
 			</ul>
 		</div><!--/.sidebar-->
 
 		<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
 			<div class="row">
 				<div class="col-lg-12" style="margin: -10px 0px;">
-					<h1 class="page-header">Invalid Contacts</h1>
+					<h1 class="page-header">Blocked Users</h1>
 				</div>
 			</div><!--/.row-->
 
@@ -66,29 +65,28 @@
 									<th>#</th>
 									<th>Full Name</th>
 									<th>Email Address</th>
+									<th>Location</th>
 									<th>Comments</th>
 									<th>Action</th>
 								</tr>
 							</thead>
 							<tbody>
-
 							</tbody>
 						</table>
 					</div>
 				</div><!--/.col-->
 
 				<div class="col-sm-12 footer">
-                    <p class="back-link">&#169; <span id="cur-year"></span> All rights reserved. <a style="text-decoration:none;color:white;" href="http://awsugblr.in/">AWS User Group Bengaluru</a></span></p>
+					<p class="back-link">&#169; <span id="cur-year"></span> All rights reserved. <a style="text-decoration:none;color:white;" href="https://runcy.me/" target="_blank">Runcy Oommen</a></span></p>
 				</div>
 			</div><!--/.row-->
 		</div>	<!--/.main-->
 	
     <script>
         $(document).ready(function(){
-        	// checkEnvironment();
-        	showInvalidContacts();
+        	showBlockedUsers();
         });
     </script>
-    <script src="js/awsugblr.js"></script>
+    <script src="js/serverless101.js"></script>
     </body>
 </html>

@@ -1,28 +1,27 @@
 import mysql.connector
 
-def register_login(name, email, password, location, comments):
+def loginregister(fullname, email, password, location, comments):
     try:
-        #Database Connection Parameters - Replace this with your DB endpoint
-        lambda101_cnx_str = {'host': 'dbnode.cemnrzna330w.ap-south-1.rds.amazonaws.com',
-           'username': 'user',
+        # Database connection parameters - replace this with your DB endpoint
+        serverless101cnxstr = {'host': 'dbnode.cemnrzna330w.ap-south-1.rds.amazonaws.com',
+           'user': 'user',
            'password': 'password',
-           'db': 'dbname'}
-        user = 0
-        connection = mysql.connector.connect(host=lambda101_cnx_str['host'], user=lambda101_cnx_str['username'],
-                                             password=lambda101_cnx_str['password'], database=lambda101_cnx_str['db'])
-        sql = "SELECT User_ID FROM Users WHERE Email_Address='%s'" % (email)
+           'database': 'dbname'}
+        connection = mysql.connector.connect(host=serverless101cnxstr['host'], user=serverless101cnxstr['user'],
+                                             password=serverless101cnxstr['password'], database=serverless101cnxstr['database'])
+        sql = "SELECT UserID FROM Users WHERE EmailAddress='%s'" % (email)
         cursor = connection.cursor()
         cursor.execute(sql)
-        user_id = cursor.fetchall()
-        if user_id:
+        userid = cursor.fetchall()
+        if userid:
             return {"result" : "user exists"}
         else:
-            query = "INSERT INTO Users(FullName,Email_Address,Password,Location,Comments) VALUES ('" + name + "','" + email + "','" + password + "','" + location + "','" + comments + "')"
+            query = "INSERT INTO Users(FullName,EmailAddress,Password,Location,Comments,Enabled) VALUES ('" + fullname + "','" + email + "','" + password + "','" + location + "','" + comments + "', 1)"
             cursor = connection.cursor()
             cursor.execute(query)
             connection.commit()
 
-            return {"result": "true"}
+            return {"result": True}
     except mysql.connector.Error as err:
         return {"result" : err}
     finally:
@@ -33,9 +32,9 @@ def register_login(name, email, password, location, comments):
 
 
 def lambda_handler(event, context):
-    name = event['name']
+    fullname = event['name']
     email = event['email']
     password = event['password']
     location = event['location']
     comments = event['comments']
-    return register_login(name, email, password, location, comments)
+    return loginregister(name, email, password, location, comments)
