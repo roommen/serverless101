@@ -3,13 +3,9 @@ import mysql.connector
 def activeusers():
     connection, cursor = None, None
     try:
-        #Database connection parameters - replace this with your DB endpoint
-        serverless101cnxstr = {'host': 'dbnode.cemnrzna330w.ap-south-1.rds.amazonaws.com',
-           'user': 'user',
-           'password': 'password',
-           'database': 'dbname'}
-        connection = mysql.connector.connect(host=serverless101cnxstr['host'], user=serverless101cnxstr['user'],
-                                             password=serverless101cnxstr['password'], database=serverless101cnxstr['database'])
+        # Database connection parameters - replace this with your DB endpoint
+        serverless101cnxstr = {'host': 'serverless101.cemnrzna330w.ap-south-1.rds.amazonaws.com', 'user': 'root', 'password': 'password', 'database': 'serverless101'}
+		connection = mysql.connector.connect(host=serverless101cnxstr['host'], user=serverless101cnxstr['user'], password=serverless101cnxstr['password'], database=serverless101cnxstr['database'])
         # Get all active users
         users = []
         sql = "SELECT * FROM Users WHERE Enabled=1"
