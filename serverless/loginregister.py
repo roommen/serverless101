@@ -4,7 +4,7 @@ def loginregister(fullname, email, password, location, comments):
     try:
         # Database connection parameters - replace this with your DB endpoint
         serverless101cnxstr = {'host': 'serverless101.cemnrzna330w.ap-south-1.rds.amazonaws.com', 'user': 'root', 'password': 'password', 'database': 'serverless101'}
-		connection = mysql.connector.connect(host=serverless101cnxstr['host'], user=serverless101cnxstr['user'], password=serverless101cnxstr['password'], database=serverless101cnxstr['database'])
+        connection = mysql.connector.connect(host=serverless101cnxstr['host'], user=serverless101cnxstr['user'], password=serverless101cnxstr['password'], database=serverless101cnxstr['database'])
         # Check if email already exists
         sql = "SELECT UserID FROM Users WHERE EmailAddress='%s'" % (email)
         cursor = connection.cursor()
@@ -29,7 +29,7 @@ def loginregister(fullname, email, password, location, comments):
 
 
 def lambda_handler(event, context):
-    fullname = event['name']
+    name = event['name']
     email = event['email']
     password = event['password']
     location = event['location']
