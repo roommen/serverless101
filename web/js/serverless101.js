@@ -148,7 +148,7 @@ function login(authdetails)
                     uid = result['uid']
                     window.location = './activeusers.html';
                 } else {
-                    $("#error").text("Invalid credentials");
+                    $("#error").text("Invalid credentials or user blocked");
                     $("#error").css('visibility', 'visible');
                 }
             },
@@ -181,7 +181,7 @@ function loginregister(loginregister) {
             {
                 loginregistersuccess = resp['result'];
                 if(loginregistersuccess === true){
-                    $("#error").text('Your login registration successful. You may now login.').css({'visibility':'visible','color':'green'});
+                    $("#error").text('Your login registration is successful.').css({'visibility':'visible','color':'green'});
                     $("#error").css('visibility', 'visible');
                     setTimeout(function(){ window.location = './index.html'; }, 5000);
                 }
