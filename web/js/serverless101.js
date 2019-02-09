@@ -127,7 +127,7 @@ function login(authdetails)
     if((authdetails.email) && (authdetails.password))
     {
         $("#error").css('visibility', 'hidden');
-        passwordValue = SHA256(authdetails.password)
+        passwordValue = sha256(authdetails.password)
         //API Endpoint - Replace this with endpoint you created
         loginurl = 'https://jthp9bhj27.execute-api.ap-south-1.amazonaws.com/serverless101/login';
         var obj = new Object();
@@ -160,7 +160,7 @@ function login(authdetails)
 function loginregister(loginregister) {
 	if((loginregister.email) && (loginregister.password) && (loginregister.fullname) && (loginregister.comments) && (loginregister.location))
     {
-        passwordValue = SHA256(loginregister.password)
+        passwordValue = sha256(loginregister.password)
         //API Endpoint - Replace this with endpoint you created
         loginregisterurl = 'https://jthp9bhj27.execute-api.ap-south-1.amazonaws.com/serverless101/loginregister';
         var obj = new Object();

@@ -1,6 +1,6 @@
 
 /* Generated sha256 encrypted code for password*/
-function SHA256(s)
+function sha256(s)
 {                
     var chrsz   = 8;
     var hexcase = 0;
