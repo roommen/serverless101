@@ -29,9 +29,9 @@ def loginregister(fullname, email, password, location, comments):
 
 
 def lambda_handler(event, context):
-    name = event['name']
+    fullname = event['fullname']
     email = event['email']
     password = event['password']
     location = event['location']
     comments = event['comments']
-    return loginregister(name, email, password, location, comments)
+    return loginregister(fullname, email, password, location, comments)

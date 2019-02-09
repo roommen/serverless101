@@ -13,7 +13,7 @@ def login(email, password):
         (userid, enabled ) = cursor.fetchone()
         if userid and int(enabled) == 1:
             return {"result": True}
-        else: 
+        else:
             return {"result": False}
     except mysql.connector.Error as err:
         return {"result": err}

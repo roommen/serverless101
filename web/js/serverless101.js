@@ -1,27 +1,26 @@
 /* Show Active Users */
 function showactiveusers() {
-    //get userid from browser local storage
-    // var user_id = localStorage.getItem("user_id");
-    //API Endpoint - Replace this with endpoint you created
-    var activeusersurl = ' https://123abcdef789.execute-api.ap-south-1.amazonaws.com/lambda101/users';
+    var activeusersurl = 'https://jthp9bhj27.execute-api.ap-south-1.amazonaws.com/serverless101/activeusers';
 
     $.ajax({
         url: activeusersurl,
         type: 'GET',
-        // data : {"user_id" : user_id},
         dataType: 'html',
         async: false,
         success: function(data)
         {
             var result = $.parseJSON(data);
-            userinfo = result['values'];
+            userinfo = result['users'];
             htmlcode = "";
 
-            htmlcode += '<td>' + userinfo['name'] +
-                    '</td><td>' + userinfo['email'] + '</td><td>' + userinfo['location'] + '</td><td>' + userinfo['comments']
-                    '</td><td><span style="color:#4ef71b;text-align:center;" class="fa fa-circle"></span>' +
-                    '</td><td><div class="tooltip"><span class="tooltiptext">Block</span><a href="" class="block-user" style="color:red;"><span class="fa fa-ban"></span></a></div></td></tr>';
-
+            for(i=0; i<userinfo.length; i++){
+                // console.log(userinfo[i]['FullName']);
+                htmlcode += '<tr><td>'+ (i+1) + '</td><td>' + userinfo[i]['FullName'] +
+                    '</td><td>' + userinfo[i]['EmailAddress'] +
+                    '</td><td>' + userinfo[i]['Location'] +
+                    '</td><td>' + userinfo[i]['Comments'] +
+                    '</td><td><div class="tooltip"><span class="tooltiptext">Block</span><a href="" class="block-user" style="color:green;"><span class="fa fa-ban"></span></a></div></td></tr>';
+            }
             $('#users-list tbody').html(htmlcode);
         }
     });
@@ -29,7 +28,30 @@ function showactiveusers() {
 
 /* Show Blocked Users */
 function showblockedusers() {
+    var blockedusersurl = 'https://jthp9bhj27.execute-api.ap-south-1.amazonaws.com/serverless101/blockedusers';
 
+    $.ajax({
+        url: blockedusersurl,
+        type: 'GET',
+        dataType: 'html',
+        async: false,
+        success: function(data)
+        {
+            var result = $.parseJSON(data);
+            userinfo = result['users'];
+            htmlcode = "";
+
+            for(i=0; i<userinfo.length; i++){
+                // console.log(userinfo[i]['FullName']);
+                htmlcode += '<tr><td>'+ (i+1) + '</td><td>' + userinfo[i]['FullName'] +
+                    '</td><td>' + userinfo[i]['EmailAddress'] +
+                    '</td><td>' + userinfo[i]['Location'] +
+                    '</td><td>' + userinfo[i]['Comments'] +
+                    '</td><td><div class="tooltip"><span class="tooltiptext">Allow</span><a href="" class="block-user" style="color:green;"><span class="fa fa-check"></span></a></div></td></tr>';
+            }
+            $('#users-list tbody').html(htmlcode);
+        }
+    });
 }
 
 /* Login */
@@ -41,7 +63,7 @@ function login(authdetails)
         $("#error").css('visibility', 'hidden');
         passwordValue = SHA256(authdetails.password)
         //API Endpoint - Replace this with endpoint you created
-        loginurl = 'https://123abcdef789.execute-api.ap-south-1.amazonaws.com/lambda101/login';
+        loginurl = 'https://jthp9bhj27.execute-api.ap-south-1.amazonaws.com/serverless101/login';
         var obj = new Object();
         obj.email = authdetails.email;
         obj.password = passwordValue;
@@ -73,23 +95,26 @@ function login(authdetails)
     }
 }
 
-/* Login Registration */
-function loginregistration(loginregistration) {
-	if((loginregistration.email) && (loginregistration.password) && (loginregistration.name) && (loginregistration.comments) && (loginregistration.location))
+/* Login Register */
+function loginregister(loginregister) {
+    console.log("hello");
+	if((loginregister.email) && (loginregister.password) && (loginregister.fullname) && (loginregister.comments) && (loginregister.location))
     {
-        passwordValue = SHA256(login_registration.password)
+        passwordValue = SHA256(loginregister.password)
         //API Endpoint - Replace this with endpoint you created
-        loginregistrationurl = 'https://123abcdef789.execute-api.ap-south-1.amazonaws.com/lambda101/register-login';
+        loginregisterurl = 'https://jthp9bhj27.execute-api.ap-south-1.amazonaws.com/serverless101/loginregister';
         var obj = new Object();
-        obj.name = loginregistration.name;
-        obj.email = loginregistration.email;
+        obj.fullname = loginregister.fullname;
+        obj.email = loginregister.email;
         obj.password = passwordValue;
-        obj.location = loginregistration.location;
-        obj.comments = loginregistration.comments;
+        obj.location = loginregister.location;
+        obj.comments = loginregister.comments;
 
         var jsonObj = JSON.stringify(obj);
+        console.log(jsonObj);
         $.ajax({
-            url: loginregistrationurl,
+            url: loginregisterurl,
+            headers: {"Content-Type": "application/json"},
             type: 'POST',
             data: jsonObj,
             dataType: 'json',
