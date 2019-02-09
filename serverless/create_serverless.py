@@ -1,6 +1,7 @@
 import os
 
-files = ["login.py", "activeusers.py", "blockedusers.py", "loginregister.py"]
+files = ["login.py", "activeusers.py", "blockedusers.py", "loginregister.py",\
+        "allowuser.py", "blockuser.py"]
 
 try:
     # remove mysql unzipped folder if exist

@@ -11,3 +11,5 @@ clean:
 	rm -f activeusers.zip
 	rm -f loginregister.zip
 	rm -f blockedusers.zip
+	rm -f allowuser.zip
+	rm -f blockuser.zip
