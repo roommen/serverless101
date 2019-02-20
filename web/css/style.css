@@ -317,6 +317,9 @@ tbody tr:nth-child(odd){
 #logo {
     margin-top: -20px;
     margin-left: -15px;
+    display: block;
+    max-width: 80%;
+    height: auto;
 }
 
 .tooltip{
